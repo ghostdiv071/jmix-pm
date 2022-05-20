@@ -4,14 +4,15 @@ import io.jmix.core.entity.annotation.JmixGeneratedValue;
 import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
 @JmixEntity
-@Table(name = "ORGANISATION", indexes = {
-        @Index(name = "IDX_ORGANISATION", columnList = "REQUEST_TO_ORGANISATION_ID")
-})
+@Table(name = "ORGANISATION")
 @Entity
 public class Organisation {
     @JmixGeneratedValue
@@ -36,17 +37,6 @@ public class Organisation {
 
     @Column(name = "CONTRACTOR")
     private String contractor;
-    @JoinColumn(name = "REQUEST_TO_ORGANISATION_ID")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private RequestToOrganisation requestToOrganisation;
-
-    public RequestToOrganisation getRequestToOrganisation() {
-        return requestToOrganisation;
-    }
-
-    public void setRequestToOrganisation(RequestToOrganisation requestToOrganisation) {
-        this.requestToOrganisation = requestToOrganisation;
-    }
 
     public void setContractor(Contractor contractor) {
         this.contractor = contractor == null ? null : contractor.getId();

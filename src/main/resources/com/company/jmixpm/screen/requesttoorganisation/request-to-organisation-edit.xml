@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        caption="msg://requestToOrganisationEdit.caption"
+        focusComponent="form">
+    <data>
+        <instance id="requestToOrganisationDc"
+                  class="com.company.jmixpm.entity.RequestToOrganisation">
+            <fetchPlan extends="_base">
+                <property name="mailingList" fetchPlan="_base"/>
+                <property name="organisation" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader/>
+            <collection id="mailingListDc" property="mailingList"/>
+        </instance>
+        <collection id="organisationsDC" class="com.company.jmixpm.entity.Organisation">
+            <fetchPlan extends="_base"/>
+            <loader id="organisationsDl">
+                <query>
+                    <![CDATA[select e from Organisation e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <screenSettings id="settingsFacet" auto="true"/>
+    </facets>
+    <actions>
+        <action id="windowCommitAndClose" caption="OK &amp; Close"
+                icon="EDITOR_OK"
+                primary="true"
+                shortcut="${COMMIT_SHORTCUT}"/>
+        <action id="windowClose"
+                caption="msg:///actions.Close"
+                icon="EDITOR_CANCEL"/>
+        <action id="windowCommit" caption="OK" icon="EDITOR_SAVE"/>
+    </actions>
+    <dialogMode height="600"
+                width="800"/>
+    <layout spacing="true" expand="editActions">
+        <form id="form" dataContainer="requestToOrganisationDc">
+            <column width="350px">
+                <textField id="requestNumberField" property="requestNumber"/>
+                <textArea id="requestTextField" property="requestText" rows="5"/>
+            </column>
+        </form>
+        <entityComboBox id="organisationList"
+                        caption="Organisation"
+                        dataContainer="requestToOrganisationDc"
+                        property="organisation"
+                        optionsContainer="organisationsDC">
+        </entityComboBox>
+        <groupBox id="mailingListBox" caption="MailingList">
+            <table id="mailingListTable" dataContainer="mailingListDc" width="100%" height="200px">
+                <actions>
+                    <action id="add" type="add"/>
+                    <action id="exclude" type="exclude"/>
+                </actions>
+                <columns>
+                    <column id="firstName"/>
+                    <column id="lastName"/>
+                    <column id="username"/>
+                    <column id="email"/>
+                    <column id="active"/>
+                    <column id="timeZoneId"/>
+                </columns>
+                <buttonsPanel>
+                    <button action="mailingListTable.add"/>
+                    <button action="mailingListTable.exclude"/>
+                </buttonsPanel>
+            </table>
+        </groupBox>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="commitBtn" action="windowCommit"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

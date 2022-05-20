@@ -9,7 +9,9 @@ import java.util.List;
 import java.util.UUID;
 
 @JmixEntity
-@Table(name = "REQUEST_TO_ORGANISATION")
+@Table(name = "REQUEST_TO_ORGANISATION", indexes = {
+        @Index(name = "IDX_REQUESTTOORGANISATION", columnList = "ORGANISATION_ID")
+})
 @Entity
 public class RequestToOrganisation {
     @JmixGeneratedValue
@@ -21,8 +23,10 @@ public class RequestToOrganisation {
     @NotNull
     private Integer requestNumber;
 
-    @OneToMany(mappedBy = "requestToOrganisation")
-    private List<Organisation> organisation;
+    @JoinColumn(name = "ORGANISATION_ID", nullable = false)
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    private Organisation organisation;
 
     @JoinTable(name = "REQUEST_TO_ORG_USER",
             joinColumns = @JoinColumn(name = "REQUEST_TO_ORGANISATION_ID", referencedColumnName = "ID"),
@@ -34,12 +38,12 @@ public class RequestToOrganisation {
     @Lob
     private String requestText;
 
-    public void setOrganisation(List<Organisation> organisation) {
-        this.organisation = organisation;
+    public Organisation getOrganisation() {
+        return organisation;
     }
 
-    public List<Organisation> getOrganisation() {
-        return organisation;
+    public void setOrganisation(Organisation organisation) {
+        this.organisation = organisation;
     }
 
     public List<User> getMailingList() {
