@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        xmlns:chart="http://jmix.io/schema/ui/charts"
+        caption="msg://dividedByOrg.caption">
+    <data>
+        <collection id="divByOrgDC" class="com.company.jmixpm.entity.RequestToOrganisation">
+            <fetchPlan extends="_base"/>
+            <loader id="transportCountsDl">
+                <query>
+                    select o.name, count(r.organisation)
+                    from RequestToOrganisation r
+                    join Organisation o on o.id = r .organisation
+                    group by o.name
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+    </facets>
+    <layout>
+        <chart:pieChart id="pie3dChart"
+                        angle="30"
+                        dataContainer="divByOrgDC"
+                        depth3D="15"
+                        height="100%"
+                        outlineAlpha="0.4"
+                        titleField="o.name"
+                        valueField="count(r.organisation)"
+                        width="100%">
+            <chart:export/>
+        </chart:pieChart>
+    </layout>
+</window>

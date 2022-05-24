@@ -10,6 +10,7 @@
               caption="msg://com.company.jmixpm.screen.organisation/organisationBrowse.menu"/>
         <item screen="RequestToOrganisation.browse"
               caption="msg://com.company.jmixpm.screen.requesttoorganisation/requestToOrganisationBrowse.menu"/>
+        <item screen="DividedByOrg" caption="msg://com.company.jmixpm.screen.statistics/dividedByOrg.caption"/>
     </menu>
 
 </menu-config>
