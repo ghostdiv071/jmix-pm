@@ -50,6 +50,7 @@
                 <column id="requestNumber"/>
                 <column id="requestText"/>
                 <column id="organisation"/>
+                <column id="cancelled"/>
             </columns>
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"
