@@ -7,10 +7,10 @@
             <fetchPlan extends="_base"/>
             <loader id="transportCountsDl">
                 <query>
-                    select o.name, count(r.organisation)
-                    from RequestToOrganisation r
-                    join Organisation o on o.id = r .organisation
-                    group by o.name
+                    <![CDATA[select o.name, count(r.organisation) as c
+                             from RequestToOrganisation r
+                             join Organisation o on o.id = r.organisation
+                             group by o.name]]>
                 </query>
             </loader>
         </collection>
@@ -26,7 +26,7 @@
                         height="100%"
                         outlineAlpha="0.4"
                         titleField="o.name"
-                        valueField="count(r.organisation)"
+                        valueField="c"
                         width="100%">
             <chart:export/>
         </chart:pieChart>

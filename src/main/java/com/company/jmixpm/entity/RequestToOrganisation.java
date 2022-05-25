@@ -19,6 +19,9 @@ public class RequestToOrganisation {
     @Id
     private UUID id;
 
+    @Column(name = "CANCELLED")
+    private Boolean cancelled;
+
     @Column(name = "REQUEST_NUMBER", nullable = false, unique = true)
     @NotNull
     private Integer requestNumber;
@@ -37,6 +40,10 @@ public class RequestToOrganisation {
     @Column(name = "REQUEST_TEXT")
     @Lob
     private String requestText;
+
+    public Boolean getCancelled() {
+        return cancelled;
+    }
 
     public Organisation getOrganisation() {
         return organisation;
