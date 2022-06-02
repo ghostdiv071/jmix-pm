@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        xmlns:ext="http://jmix.io/schema/ui/window-ext"
+        caption="msg://com.company.jmixpm.screen.user/UserBrowse.caption"
+        extends="com/company/jmixpm/screen/user/user-browse.xml">
+    <layout>
+        <groupTable id="usersTable">
+            <columns>
+                <column ext:index="4" id="phoneNumber" caption="Phone Number"/>
+            </columns>
+        </groupTable>
+    </layout>
+</window>
