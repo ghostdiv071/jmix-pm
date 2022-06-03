@@ -1,6 +1,7 @@
 package com.company.jmixpm.entity;
 
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
+import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 
 import javax.persistence.*;
@@ -22,6 +23,7 @@ public class RequestToOrganisation {
     @Column(name = "CANCELLED")
     private Boolean cancelled;
 
+    @InstanceName
     @Column(name = "REQUEST_NUMBER", nullable = false, unique = true)
     @NotNull
     private Integer requestNumber;
@@ -40,6 +42,10 @@ public class RequestToOrganisation {
     @Column(name = "REQUEST_TEXT")
     @Lob
     private String requestText;
+
+    public void setCancelled(Boolean cancelled) {
+        this.cancelled = cancelled;
+    }
 
     public Boolean getCancelled() {
         return cancelled;
