@@ -3,6 +3,7 @@
 
     <menu id="application" caption="msg://com.company.jmixpm/menu.application" insertBefore="administration">
         <item screen="ext_User.browse" caption="msg://com.company.jmixpm.screen.user/UserBrowse.caption"/>
+        <item screen="ext_User.edit" caption="msg://com.company.jmixpm.screen.user/UserEdit.caption"/>
         <item screen="themeSettingsScreen" caption="msg://io.jmix.ui.app.themesettings/themeSettings.caption"/>
         <item screen="Project.browse" caption="msg://com.company.jmixpm.screen.project/projectBrowse.menu"/>
         <item screen="Task_.browse" caption="msg://com.company.jmixpm.screen.task/taskBrowse.menu"/>
@@ -10,7 +11,7 @@
               caption="msg://com.company.jmixpm.screen.organisation/organisationBrowse.menu"/>
         <item screen="RequestToOrganisation.browse"
               caption="msg://com.company.jmixpm.screen.requesttoorganisation/requestToOrganisationBrowse.menu"/>
-        <item screen="DividedByOrg" caption="msg://com.company.jmixpm.screen.statistics/dividedByOrg.caption"/>
+        <item screen="DividedByOrganisation" caption="msg://com.company.jmixpm.screen.statistics/dividedByOrg.caption"/>
     </menu>
 
 </menu-config>
