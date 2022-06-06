@@ -36,6 +36,7 @@
                 </textField>
                 <maskedField id="phoneNumberField" property="phoneNumber" mask="+ 7 (###) ###-##-##"/>
                 <comboBox id="contractorField" property="contractor"/>
+                <comboBox id="organisationTypeField" property="organisationType"/>
             </column>
         </form>
         <hbox id="editActions" spacing="true">

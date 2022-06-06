@@ -20,6 +20,9 @@ public class Organisation {
     @Id
     private UUID id;
 
+    @Column(name = "ORGANISATION_TYPE")
+    private String organisationType;
+
     @InstanceName
     @Column(name = "NAME", nullable = false)
     @NotNull
@@ -37,6 +40,14 @@ public class Organisation {
 
     @Column(name = "CONTRACTOR")
     private String contractor;
+
+    public OrganisationType getOrganisationType() {
+        return organisationType == null ? null : OrganisationType.fromId(organisationType);
+    }
+
+    public void setOrganisationType(OrganisationType organisationType) {
+        this.organisationType = organisationType == null ? null : organisationType.getId();
+    }
 
     public void setContractor(Contractor contractor) {
         this.contractor = contractor == null ? null : contractor.getId();
