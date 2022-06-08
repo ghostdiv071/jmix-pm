@@ -16,6 +16,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.Nonnull;
+import java.util.LinkedList;
+import java.util.stream.Collectors;
 
 @UiController("RequestToOrganisation.edit")
 @UiDescriptor("request-to-organisation-edit.xml")
@@ -28,14 +30,16 @@ public class RequestToOrganisationEdit extends StandardEditor<RequestToOrganisat
     @Autowired
     private Emailer emailer;
     private boolean justCreated;
+    private final LinkedList<Integer> requestNumbers = manager
+            .load(RequestToOrganisation.class).all().list().stream()
+            .map(RequestToOrganisation::getRequestNumber)
+            .collect(Collectors.toCollection(LinkedList::new));
 
     private static final Logger log = LoggerFactory.getLogger(RequestToOrganisation.class);
 
     @Subscribe
     public void onInitEntity(InitEntityEvent<RequestToOrganisation> event) {
-        event.getEntity().setRequestNumber(
-                manager.load(RequestToOrganisation.class)
-                        .all().list().size() + 1);
+        event.getEntity().setRequestNumber(requestNumbers.getLast() + 1);
         justCreated = true;
     }
 
